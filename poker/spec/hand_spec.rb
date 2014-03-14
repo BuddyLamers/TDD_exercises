@@ -39,7 +39,7 @@ describe Hand do
       hand_with_cards.cards = cards.last(2)
       deck.should_receive(:take).with(3).and_return(cards.first(3))
       hand_with_cards.draw(3, deck)
-      expect(hand_with_cards.cards).to eq(cards)
+      hand_with_cards.cards.should =~ cards
     end
 
     it 'raise error if trying to take more than 3' do
@@ -52,6 +52,32 @@ describe Hand do
                                                 "can't have more than 5 cards")
     end
   end
+
+  describe '#discard' do
+
+    it "should remove the card from hand" do
+      hand_with_cards.discard('A♠')
+      expect(hand_with_cards.cards.length).to eq(2)
+    end
+
+    it "should not allow more than 3 cards to be returned" do
+      expect {hand_with_cards.discard('A♠')}.to raise_error "discard max 3 cards"
+    end
+
+  end
+
+  describe '#to_s' do
+
+  end
+
+  describe '#beats?' do
+
+
+  end
+
+
+
+
 
   #sort cards by value --check for sequence
   #if all cards are the same suit
