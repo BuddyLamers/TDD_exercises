@@ -67,4 +67,30 @@ describe Array do
       expect(test_array.two_sum).to eq([[0, 4], [2, 3]])
     end
   end
+
+  describe '#my_transpose' do
+    let(:test_array) do
+      [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8]
+        ]
+    end
+
+    it "returns an array" do
+      expect(test_array.my_transpose).to be_an(Array)
+    end
+
+    it "returns an empty array if empty array given" do
+      expect([].my_transpose).to eq ([])
+    end
+
+    it "transposes an array correctly" do
+      expect(test_array.my_transpose).to eq([
+                                            [0, 3, 6],
+                                            [1, 4, 7],
+                                            [2, 5, 8]
+                                            ])
+    end
+  end
 end
